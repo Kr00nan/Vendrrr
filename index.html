@@ -7,19 +7,28 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
   <link rel="stylesheet" href="style.css">
   <title>Vendrrr</title>
+  <style>
+  div {
+    border: 1px solid black;
+  }
+  </style>
 </head>
 <body>
   <div class="container-fluid">
     <div class="row">
-      <div class="col-12">
+      <div class="col-2"></div>
+      <div class="col-8">
         <h1>Vendrrr!</h1>
         <h5>Items:</h5>
         <div id="items" class="row">
+          <!-- This is where are the items are drawn -->
 
         </div>
         <h5 id="money">Money:</h5>
         <button onclick="app.controllers.venderController.addMoney()">Add Quarter</button>
+        <button onclick="app.controllers.venderController.drawItems()">Restock the Machine</button>
       </div>
+      <div class="col-2"></div>
     </div>
   </div>
   <script src="vender-service.js"></script>

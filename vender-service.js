@@ -38,12 +38,36 @@ function VenderService(){
   ]
 
   //public parts
-
   
   this.addMoney = function(){
-    money += .25
+    money += .25;
+    return money;
   }
 
+  this.getItems = function () {
+    return items;
+  }
 
+  this.purchaseItem = function (product) {
+    // debugger
+    if (hasMoney() && money >= items[product].price) {
+      if (hasProduct(product)) {
+        items[product].amount--;
+        money - items[product].price;
+      } else {
+        alert("Item not available for purchase.");
+      }
+    } else {
+      alert("Please insert quarters.")
+    }
+  }
+
+  function hasMoney() {
+    return money >= 0;
+  }
+
+  function hasProduct(product) {
+    return items[product].amount > 0;
+  }
 
 }
