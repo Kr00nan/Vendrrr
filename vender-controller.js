@@ -20,7 +20,7 @@ function VenderController(){
           <h5 class="card-title">${items[i].name}</h5>
           <p>${items[i].description}</p>
           <p>Amount: ${items[i].amount}</p>
-          <p>Price: ${items[i].price}</p>          
+          <p>Price: $${items[i].price.toFixed(2)}</p>          
           <button class="card-link" onclick=app.controllers.venderController.purchaseItem(${i})>Purchase Item</button>
         </div>
       </div>

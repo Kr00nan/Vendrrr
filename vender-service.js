@@ -2,7 +2,7 @@ function VenderService(){
 
   ///////////// PRIVATE ///////////////
 
-  var money = 0
+  var money = 0;
   var initialStock = [
     {
       name: "Fruit Snack Gummies",
@@ -40,7 +40,7 @@ function VenderService(){
       price: 1.25,
       amount: 10
     }
-  ]
+  ];
 
   var items = [
     {
@@ -79,7 +79,7 @@ function VenderService(){
       price: 1.25,
       amount: 10
     }
-  ]
+  ];
 
   // var items = initialStock.slice();
   
