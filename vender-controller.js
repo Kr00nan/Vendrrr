@@ -1,47 +1,48 @@
 function VenderController(){
-  //private parts
-  var venderService = new VenderService();
 
-  //items is an array we need to get from the service and give to drawItems
+  ///////////// PRIVATE ///////////////
+  
+  var venderService = new VenderService();
+  var moneyId = document.getElementById('money');
+  var itemId = document.getElementById('items');
   
   this.drawItems = function(){
-    //we will take in a parameter(items) and iterate over it to build
-    //a template to draw to the screen.
+
     var items = venderService.getItems();
-    var text = document.getElementById('items');
     var template = "";
 
-    for(i = 0; i < items.length; i++){
+    for(var i = 0; i < items.length; i++){
       template += `
-      <div class="card" style="width: 18rem;">
+      <div class="card" style="width: 15rem;">
         <div class="card-body">
           <h5 class="card-title">${items[i].name}</h5>
           <p>${items[i].description}</p>
           <p>Amount: ${items[i].amount}</p>
           <p>Price: ${items[i].price}</p>          
-          <a class="card-link" onclick=app.controllers.venderController.purchaseItem(${i})>Purchase Item</a>
+          <button class="card-link" onclick=app.controllers.venderController.purchaseItem(${i})>Purchase Item</button>
         </div>
       </div>
       `
     }
-    text.innerHTML = template;
-  
+
+    itemId.innerHTML = template;
+
   }
 
-
-  //public parts
-  
-  //we need a function to take money from our "view" and pass it to our service
+  ///////////// PUBLIC ///////////////
   
   this.addMoney = function() {
-    var elemID = document.getElementById('money');
-    elemID.textContent = "Money: $" + venderService.addMoney().toFixed(2);
+    moneyId.textContent = "Money: $" + venderService.addMoney().toFixed(2);
   }
 
   this.purchaseItem = function(product) {
     venderService.purchaseItem(product);
+    moneyId.textContent = "Money: $" + venderService.getMoney().toFixed(2);
     this.drawItems();
   }
 
+  // this.reStock = function() {
+  //   venderService.reStock();
+  // }
 
 }

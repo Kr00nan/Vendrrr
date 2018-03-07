@@ -1,10 +1,9 @@
 function VenderService(){
-  //private parts
-  var money = 0
 
-  //our purchaseable items, add some of your own!
-  //we could add an id property to these items to display location for purchasing(A1, D4, etc)
-  var items = [
+  ///////////// PRIVATE ///////////////
+
+  var money = 0
+  var initialStock = [
     {
       name: "Fruit Snack Gummies",
       description: "Fruit salad done right.",
@@ -37,31 +36,8 @@ function VenderService(){
     }
   ]
 
-  //public parts
+  var items = initialStock.slice();
   
-  this.addMoney = function(){
-    money += .25;
-    return money;
-  }
-
-  this.getItems = function () {
-    return items;
-  }
-
-  this.purchaseItem = function (product) {
-    // debugger
-    if (hasMoney() && money >= items[product].price) {
-      if (hasProduct(product)) {
-        items[product].amount--;
-        money - items[product].price;
-      } else {
-        alert("Item not available for purchase.");
-      }
-    } else {
-      alert("Please insert quarters.")
-    }
-  }
-
   function hasMoney() {
     return money >= 0;
   }
@@ -70,4 +46,28 @@ function VenderService(){
     return items[product].amount > 0;
   }
 
+  ///////////// PUBLIC ///////////////
+  
+  this.addMoney = function(){
+    money += .25;
+    return this.getMoney();
+  }
+
+  this.getMoney = function() {
+    return money;
+  }
+
+  this.getItems = function (callBack) {
+    return items;
+  }
+
+  this.purchaseItem = function (product) {
+
+    if (hasMoney() && money >= items[product].price) {
+      if (hasProduct(product)) {
+        items[product].amount--;
+        money -= items[product].price;
+      } 
+    }
+  }
 }
