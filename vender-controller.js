@@ -6,14 +6,16 @@ function VenderController(){
   var moneyId = document.getElementById('money');
   var itemId = document.getElementById('items');
   
-  this.drawItems = function(){
+  
+  ///////////// PUBLIC ///////////////
+  
+  function drawItems(items){
 
-    var items = venderService.getItems();
     var template = "";
 
     for(var i = 0; i < items.length; i++){
       template += `
-      <div class="card" style="width: 15rem;">
+      <div class="card" style="width: 16rem;">
         <div class="card-body">
           <h5 class="card-title">${items[i].name}</h5>
           <p>${items[i].description}</p>
@@ -29,20 +31,21 @@ function VenderController(){
 
   }
 
-  ///////////// PUBLIC ///////////////
-  
   this.addMoney = function() {
     moneyId.textContent = "Money: $" + venderService.addMoney().toFixed(2);
   }
 
   this.purchaseItem = function(product) {
-    venderService.purchaseItem(product);
+    venderService.purchaseItem(product, drawItems);
     moneyId.textContent = "Money: $" + venderService.getMoney().toFixed(2);
-    this.drawItems();
   }
 
-  // this.reStock = function() {
-  //   venderService.reStock();
-  // }
+  this.reStock = function() {
+    // debugger
+    venderService.reStock(drawItems);
+    // console.log("reStock function");
+  }
+
+  venderService.getItems(drawItems);
 
 }

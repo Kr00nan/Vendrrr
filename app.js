@@ -5,4 +5,4 @@ var app = {
 
 }
 
-app.controllers.venderController.drawItems();
+// app.controllers.venderController.drawItems();

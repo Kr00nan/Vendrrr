@@ -33,10 +33,55 @@ function VenderService(){
       description: "This snack eats you!",
       price: 3.25,
       amount: 1
+    },
+    {
+      name: "Mountain Dew Cheetos",
+      description: "Gamers, this one goes out to you.",
+      price: 1.25,
+      amount: 10
     }
   ]
 
-  var items = initialStock.slice();
+  var items = [
+    {
+      name: "Fruit Snack Gummies",
+      description: "Fruit salad done right.",
+      price: 1.00,
+      amount: 45
+    },
+    {
+      name: "Plant Food",
+      description: "Are you hungry? I could use a light snack.",
+      price: 5.00,
+      amount: 20
+    },
+    {
+      name: "Admiral-able Ack-Bar",
+      description: "Snack like an Admiral.",
+      price: .75,
+      amount: 3
+    },
+    {
+      name: "Paranormal Snacktivity",
+      description: "The perfect midnight snack.",
+      price: .25,
+      amount: 7
+    },
+    {
+      name: "The Void",
+      description: "This snack eats you!",
+      price: 3.25,
+      amount: 1
+    },
+    {
+      name: "Mountain Dew Cheetos",
+      description: "Gamers, this one goes out to you.",
+      price: 1.25,
+      amount: 10
+    }
+  ]
+
+  // var items = initialStock.slice();
   
   function hasMoney() {
     return money >= 0;
@@ -58,16 +103,23 @@ function VenderService(){
   }
 
   this.getItems = function (callBack) {
-    return items;
+    callBack(items);
   }
 
-  this.purchaseItem = function (product) {
+  this.purchaseItem = function (product, callBack) {
 
     if (hasMoney() && money >= items[product].price) {
       if (hasProduct(product)) {
         items[product].amount--;
         money -= items[product].price;
+        callBack(items);
       } 
     }
   }
+
+  this.reStock = function (callBack) {
+    // items = initialStock.slice();
+    callBack(initialStock);
+  }
+
 }
