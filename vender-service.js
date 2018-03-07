@@ -118,6 +118,8 @@ function VenderService(){
   }
 
   this.reStock = function (callBack) {
+    // .slice copies object references into the new array.
+    // Both the original and new array refer to the same object.
     // items = initialStock.slice();
     callBack(initialStock);
   }
