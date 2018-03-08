@@ -15,7 +15,7 @@ function VenderController(){
 
     for(var i = 0; i < items.length; i++){
       template += `
-      <div class="card" style="width: 16rem;">
+      <div class="card" style="width: 13rem;">
         <div class="card-body">
           <h5 class="card-title">${items[i].name}</h5>
           <p>${items[i].description}</p>
